@@ -1,0 +1,8 @@
+.env
+venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+.pytest_cache/
+.streamlit/secrets.toml
+analysis_report_*.md

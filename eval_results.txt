@@ -1,0 +1,14 @@
+Question                                                       Expect   Got      Route  Exec/Handled ms     Notes
+----------------------------------------------------------------------------------------------------------------------------------
+Give me summary statistics and check for missing values        eda      eda      OK     OK           82     
+What's the correlation between ad spend and foot traffic?      eda      eda      OK     OK           14     
+Build a model to predict sales                                 predictive predictive OK     OK           11     
+Which features drive foot traffic?                             predictive predictive OK     OK           9      
+What was the effect of the campaign on sales?                  causal   causal   OK     OK           12     
+Show me a bar chart of average sales by region                 visualization visualization OK     OK           297    
+Plot the distribution of ad spend                              visualization visualization OK     OK           32     
+Hello, what can you do?                                        general  general  OK     OK           4      
+Give me summary stats on average sales (typo'd column, firs... eda      eda      OK     OK           17     auto-fix path
+(adversarial) causal question, LLM response contains 'impor... causal   causal   OK     OK           4      blocked before execution, as intended
+----------------------------------------------------------------------------------------------------------------------------------
+Routing correct: 10/10   Execution/handling correct: 10/10

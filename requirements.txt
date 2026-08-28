@@ -1,0 +1,15 @@
+streamlit>=1.35
+pandas>=2.0
+numpy>=1.24
+plotly>=5.20
+statsmodels>=0.14
+scikit-learn>=1.3
+linearmodels>=5.3
+python-dotenv>=1.0
+openpyxl>=3.1
+
+# LLM provider SDKs -- only the one you actually use needs a real API key,
+# but all three are installed so MODEL_PROVIDER can be switched without reinstalling.
+openai>=1.40
+anthropic>=0.40
+groq>=1.0
