@@ -1,3 +1,6 @@
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+
 """Tests llm.py against mocked SDK responses -- no real API key or network call needed."""
 import os
 from unittest.mock import MagicMock, patch

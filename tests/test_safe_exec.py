@@ -1,3 +1,6 @@
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+
 """
 Tests the exec() guard in safe_exec.py: confirms it actually blocks the classes of
 thing it claims to (file access, process/network modules, eval/exec, dunder-based

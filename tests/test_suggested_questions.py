@@ -1,3 +1,6 @@
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+
 """
 Tests dataset_info.suggested_questions() -- the data-aware "Try asking:" chips shown
 in the UI. Written after a real bug was caught by hand: on the bundled sales_campaign
@@ -17,7 +20,7 @@ import pandas as pd
 
 from dataset_info import suggested_questions, _is_id_like
 
-HERE = os.path.dirname(__file__)
+HERE = os.path.dirname(os.path.dirname(__file__))
 
 DATASETS = {
     "sales_campaign.csv": os.path.join(HERE, "sample_data", "sales_campaign.csv"),

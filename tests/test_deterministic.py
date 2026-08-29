@@ -1,3 +1,6 @@
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+
 """
 Tests deterministic.py's quick_baseline_model() -- the zero-LLM predictive path --
 against the real shipped sample dataset. No mocking needed: there's no LLM call to
@@ -8,7 +11,7 @@ import pandas as pd
 
 from deterministic import quick_baseline_model
 
-DF = pd.read_csv(os.path.join(os.path.dirname(__file__), "sample_data", "sales_campaign.csv"))
+DF = pd.read_csv(os.path.join(os.path.dirname(os.path.dirname(__file__)), "sample_data", "sales_campaign.csv"))
 
 
 def test_regression_target_trains_and_beats_baseline():

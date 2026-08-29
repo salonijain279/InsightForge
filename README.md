@@ -51,12 +51,12 @@ without an API call. Chat-driven custom analysis requires a configured provider.
 Run the deterministic tests individually:
 
 ```bash
-python test_router.py
-python test_deterministic.py
-python test_generalization.py
-python test_pipeline.py
-python test_safe_exec.py
-python test_causal_methods.py
+python tests/test_router.py
+python tests/test_deterministic.py
+python tests/test_generalization.py
+python tests/test_pipeline.py
+python tests/test_safe_exec.py
+python tests/test_causal_methods.py
 python eval_suite.py
 ```
 

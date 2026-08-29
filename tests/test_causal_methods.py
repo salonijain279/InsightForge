@@ -1,3 +1,6 @@
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+
 """Deterministic checks for the four causal estimation patterns used by the app.
 
 Each test creates synthetic data with a known effect and verifies that the

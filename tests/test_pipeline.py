@@ -1,3 +1,6 @@
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+
 """
 Integration test: runs the REAL pipeline (router -> handler prompt -> parse -> exec)
 against the REAL sample dataset, with only the LLM call itself mocked out (since that
@@ -15,7 +18,7 @@ from unittest.mock import patch
 import pandas as pd
 import pipeline
 
-DF = pd.read_csv(os.path.join(os.path.dirname(__file__), "sample_data", "sales_campaign.csv"))
+DF = pd.read_csv(os.path.join(os.path.dirname(os.path.dirname(__file__)), "sample_data", "sales_campaign.csv"))
 
 
 def test_causal_question_end_to_end():

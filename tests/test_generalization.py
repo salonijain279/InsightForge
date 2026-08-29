@@ -1,3 +1,6 @@
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+
 """
 Generalization test: does Lens actually work on datasets it has never seen before,
 from genuinely different domains? Three datasets, none of which the code has any
@@ -96,7 +99,7 @@ def fake_llm_factory(df, target):
 def run():
     results = []
     for fname, cfg in DATASETS.items():
-        path = os.path.join(os.path.dirname(__file__), "sample_data", "generalization_test", fname)
+        path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "sample_data", "generalization_test", fname)
         df = pd.read_csv(path)
         target = cfg["target"]
         row = {"dataset": fname, "shape": df.shape}

@@ -1,3 +1,6 @@
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+
 """Tests report.py's build_eda_profile(), specifically the data-quality metrics
 added on top of the original profile (completeness %, duplicate row %, constant
 columns, high-cardinality columns, IQR outlier counts) -- all deterministic
