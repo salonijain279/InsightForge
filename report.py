@@ -1,5 +1,4 @@
-"""Assembles the session's Q&A history into one downloadable Markdown report --
-the "report generation" the assignment asks for, not just chat scrollback."""
+"""Assemble the session history into a downloadable Markdown analysis report."""
 
 import datetime as dt
 
@@ -46,8 +45,7 @@ def build_report(dataset_name: str, df, history: list) -> str:
         lines.append("---")
         lines.append("")
 
-    lines.append("*Generated automatically by the Automated Data Scientist system -- "
-                  "MSBA 6461 course project.*")
+    lines.append("*Generated automatically by InsightForge.*")
     return "\n".join(lines)
 
 

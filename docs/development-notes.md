@@ -1,15 +1,8 @@
-# InsightForge — Project Log
+# InsightForge — Development Notes
 
-**Course:** MSBA 6461, Advanced AI for Natural Language Processing (Prof. Mochen Yang)
-**Author:** Saloni Jain
-**Path:** Path 4 — "Automate Your Own Data-Science Job." Build an end-to-end system that
-automates what a data scientist normally does by hand: exploring a dataset, building a
-predictive model, testing a causal claim, generating charts, and writing up the results —
-all from a plain-English question, with the app choosing the right analysis on its own.
-
-This log tracks what was built, what broke, and what was fixed, in the order it happened.
-The full write-up with screenshots and the reflection on what could and couldn't be
-automated is in `Automated_Data_Scientist_Project_Report_v4_Edited.docx`.
+This document records the system design, the failures found during testing, and the
+tradeoffs that remain. It is intentionally more detailed than the project README so the
+reasoning behind the implementation is auditable.
 
 ---
 
@@ -88,7 +81,7 @@ reading the code and guessing. Each has a test that checks it can't silently com
 
 - **Safety is a blocklist, not a sandbox.** `safe_exec.py` blocks known-dangerous patterns
   before running code; it does not run code in an isolated process or container. Reasonable
-  for a single-user course project, not something to expose to the public internet as-is.
+  for a single-user local tool, not something to expose to the public internet as-is.
 - **The signal-based timeout is not enforceable inside Streamlit's worker thread.** It works
   in direct script execution; a production version needs process or container isolation for
   a hard execution limit.
@@ -100,20 +93,19 @@ reading the code and guessing. Each has a test that checks it can't silently com
 
 ## 6. Test coverage
 
-Ten automated test scripts, all passing, run with:
+The automated suite is collected with `pytest` and covers routing, provider wrappers,
+pipeline execution, deterministic modelling, safety checks, suggested questions, trust
+cards, report generation, cross-domain generalization, and causal-method recovery.
 
-```
-python3 test_llm.py && python3 test_router.py && python3 test_pipeline.py && \
-python3 test_safe_exec.py && python3 test_deterministic.py && \
-python3 test_suggested_questions.py && python3 test_trust_card.py && \
-python3 test_report.py && python3 test_generalization.py && \
-python3 test_causal_methods.py
+```bash
+pip install -r requirements-dev.txt
+pytest -q
+python eval_suite.py
 ```
 
-Plus `eval_suite.py` (10 representative questions run end to end through the real pipeline)
-and `test_generalization.py` (the full pipeline run against 3 datasets from different
-domains the code has no dataset-specific logic for, to check it isn't just tuned to look
-correct on one bundled file).
+The separate batch evaluation runs ten representative questions end to end through the
+pipeline. The generalization tests exercise three datasets from different domains to make
+sure the logic is not tuned only to the bundled campaign sample.
 
 The causal-inference code patterns (DiD, IV, RDD, PSM) were separately validated against a
 synthetic dataset with a known, built-in true effect before being trusted in any prompt —
@@ -121,8 +113,7 @@ each method recovers the true effect within a reasonable margin.
 
 ## 7. What automated well, and what didn't
 
-The full reflection is in the report document. Short version: mechanical execution — running
-the right kind of analysis on well-specified questions, recovering from a broken column
+Mechanical execution — running the right kind of analysis on well-specified questions, recovering from a broken column
 name automatically, refusing to run unsafe code — automated cleanly and reliably. What
 didn't automate away: judging *whether* a causal claim is defensible for a given dataset,
 translating a statistical result into a business decision, and — found directly through this

@@ -1,6 +1,3 @@
-import os as _os, sys as _sys
-_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
-
 """
 Tests deterministic.py's quick_baseline_model() -- the zero-LLM predictive path --
 against the real shipped sample dataset. No mocking needed: there's no LLM call to

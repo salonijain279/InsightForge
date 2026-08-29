@@ -1,31 +1,8 @@
-"""
-InsightForge -- an automated data scientist. MSBA 6461 course project (Path 4).
-================================================================
-Author: Saloni Jain
+"""Streamlit interface for InsightForge.
 
-A substantially reworked course implementation, developed with Claude Code and
-informed by ideas from open-source projects researched for this assignment:
-
-  - Auto-Analyst (FireBird Technologies) -- the idea of routing a question to a
-    specialist handler (EDA / predictive / causal / viz) instead of one giant
-    prompt trying to do everything.
-  - ydata-profiling -- the idea of a one-click full EDA profile report, as a
-    complement to chat-driven ad-hoc questions.
-  - LIDA (Microsoft) -- keeping visualization generation chat-driven and code-based
-    rather than templated.
-  - This project's own validated causal-inference work (test_causal_methods.py,
-    built earlier tonight) -- DiD / IV / RDD / PSM identification strategies.
-
-Architecture (built step by step, see PROJECT_LOG.md for the build order):
-    app.py          <- this file: Streamlit UI, file upload, chat loop
-    llm.py          <- plain-function LLM wrapper (OpenAI + Anthropic, no framework)
-    router.py       <- classifies each question into eda/predictive/causal/viz/general
-    handlers/       <- one module per analysis type, each returns (code, commentary)
-    report.py       <- assembles the session's Q&A into a downloadable report
-
-Deliberately NOT using a heavyweight agent framework (DSPy, LangChain, etc.) --
-plain functions and explicit control flow are easier to read end to end and to
-explain to a grader than framework internals.
+The analysis pipeline uses explicit Python modules rather than a heavyweight agent
+framework, keeping routing, execution, recovery, and evidence grounding inspectable.
+See ``docs/development-notes.md`` for the design history and tradeoffs.
 """
 
 import os
@@ -198,7 +175,7 @@ st.markdown(
 
 # Every bundled sample dataset this app has actually been tested against (the
 # original demo dataset + the 3 genuinely-different-domain generalization-test
-# datasets, see PROJECT_LOG.md Section 9.2) -- surfaced as one dropdown instead of
+# datasets, see docs/development-notes.md) -- surfaced as one dropdown instead of
 # a single "use sample data" button, so switching between them for a demo takes
 # one click instead of re-uploading a file each time.
 SAMPLE_DATASETS = {
@@ -287,12 +264,12 @@ with st.sidebar:
         st.divider()
         st.warning(
             "No LLM provider configured -- set MODEL_PROVIDER and the matching "
-            "API key in your `.env` file (see `.env-template`) before asking a "
+            "API key in your `.env` file (see `.env.example`) before asking a "
             "question."
         )
 
     st.markdown(
-        '<div class="forge-footer">Built for MSBA 6461 &middot; Advanced AI for NLP</div>',
+        '<div class="forge-footer">Evidence-grounded analytics &middot; Built with Streamlit</div>',
         unsafe_allow_html=True,
     )
 

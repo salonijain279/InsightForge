@@ -1,6 +1,3 @@
-import os as _os, sys as _sys
-_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
-
 """Tests trust_card.py's fact-extraction: confirms it detects real patterns in
 actual generated code and does NOT claim a method was used when it wasn't --
 the whole point of a "trust card" is that it can't lie, so a false positive here

@@ -1,6 +1,3 @@
-import os as _os, sys as _sys
-_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
-
 """
 Tests dataset_info.suggested_questions() -- the data-aware "Try asking:" chips shown
 in the UI. Written after a real bug was caught by hand: on the bundled sales_campaign

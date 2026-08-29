@@ -20,7 +20,7 @@ def call_llm(prompt: str, system: str = None, max_tokens: int = 2000, temperatur
     if os.environ.get("DEMO_MODE") == "1":
         # Opt-in only, off by default, and never touched by a real run: lets the app be
         # clicked through end to end (for a screenshot or a demo) without spending an API
-        # call or requiring a key. See _demo_fake_response() and PROJECT_LOG.md.
+        # call or requiring a key. See _demo_fake_response() and the development notes.
         return _demo_fake_response(system or "", prompt or "")
 
     provider = os.environ.get("MODEL_PROVIDER", "openai").strip().lower()

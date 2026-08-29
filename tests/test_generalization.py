@@ -1,8 +1,5 @@
-import os as _os, sys as _sys
-_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
-
 """
-Generalization test: does Lens actually work on datasets it has never seen before,
+Generalization test: does InsightForge work on datasets it has never seen before,
 from genuinely different domains? Three datasets, none of which the code has any
 column-name-specific logic for:
 

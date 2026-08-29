@@ -1,6 +1,3 @@
-import os as _os, sys as _sys
-_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
-
 """
 Integration test: runs the REAL pipeline (router -> handler prompt -> parse -> exec)
 against the REAL sample dataset, with only the LLM call itself mocked out (since that
@@ -9,7 +6,7 @@ respond to this handler's system prompt, so this checks the full path end to end
 not just each piece in isolation.
 
 sample_data/sales_campaign.csv was generated with a KNOWN true causal effect of the
-campaign on sales: 4500 (see the generation script referenced in PROJECT_LOG.md).
+campaign on sales: 4500 (see the bundled dataset notes in development-notes.md).
 A correct DiD analysis on this data should land close to that number.
 """
 import os
@@ -70,9 +67,8 @@ st.write(df.describe())
 
 
 def test_predictive_question_end_to_end():
-    """The assignment requires predictive analysis as a mandatory capability (causal
-    is the bonus), so this gets the same real-data, real-execution treatment as the
-    causal and EDA tests above -- not just a claim that it works."""
+    """Exercise prediction with real data and real execution, matching the causal
+    and EDA integration-test coverage above."""
     fake_llm_response = """COMMENTARY:
 Trains a linear regression to predict sales from ad spend, foot traffic and store
 size, using an 80/20 train/test split, and reports R-squared and MAE on the held-out

@@ -12,11 +12,11 @@ and touching the filesystem or network, calling eval/exec/compile on further
 attacker-controlled strings, or reaching for classic sandbox-escape gadgets via
 dunder attributes (__globals__, __subclasses__, __mro__, etc.).
 
-For a single-user, local, course-project tool this is a reasonable and honestly-
+For a single-user, local analytics tool this is a reasonable and honestly-
 described mitigation. It is explicitly NOT what you'd want for a multi-tenant or
 internet-facing deployment -- that needs real process isolation (a container,
 gVisor, or similar), which is out of scope for what could be built in the time
-available here. See PROJECT_LOG.md's Security & Limitations section.
+available here. See docs/development-notes.md for security limitations.
 """
 
 import ast
@@ -123,7 +123,7 @@ def safe_exec(code: str, local_vars: dict):
     one shared dict for both makes the executed code behave like real
     module-level code, where comprehensions and nested functions can see
     everything in scope, matching what generated code is actually written to
-    expect. See PROJECT_LOG.md for the live traceback that caught this."""
+    expect. See docs/development-notes.md for the failure that exposed this."""
     check_code_safety(code)
     local_vars["__builtins__"] = SAFE_BUILTINS
     exec(code, local_vars)

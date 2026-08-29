@@ -32,8 +32,8 @@ def _is_id_like(df: pd.DataFrame, col: str) -> bool:
 def suggested_questions(df: pd.DataFrame) -> list:
     """Builds 3-4 example questions from the ACTUAL columns of whatever dataset is
     loaded -- generic by construction, not hardcoded to one dataset, so this works
-    the same way for the bundled sample or any uploaded CSV (see generalization
-    testing in PROJECT_LOG.md Section 9.2 for why that distinction matters).
+    the same way for the bundled sample or any uploaded CSV (see the generalization
+    tests for coverage across different domains).
     Returns (icon, question_text) pairs so the UI can render each as a labeled chip."""
     numeric_cols = [c for c in df.columns if pd.api.types.is_numeric_dtype(df[c])]
     cat_cols = [c for c in df.columns if c not in numeric_cols]
@@ -51,7 +51,7 @@ def suggested_questions(df: pd.DataFrame) -> list:
         chartable_cat = next((c for c in cat_cols if df[c].nunique() <= 20), cat_cols[0])
         qs.append(("", f"Show me a bar chart of average {numeric_for_agg[0]} by {chartable_cat}"))
     # The bundled sample dataset specifically has a known, validatable causal effect
-    # baked in (see PROJECT_LOG.md Section 1) -- surface that question only for it.
+    # baked in (see docs/development-notes.md) -- surface that question only for it.
     if {"treated", "post", "sales"}.issubset(df.columns):
         qs.append(("", "What was the effect of the campaign on sales?"))
     return qs[:4]
