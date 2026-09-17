@@ -1,18 +1,18 @@
 # InsightForge
 
-**I built an analytics assistant that runs the analysis before it explains the answer.**
+**An analytics assistant that runs the analysis before it explains the answer.**
 
 [![Tests](https://github.com/salonijain279/InsightForge/actions/workflows/ci.yml/badge.svg)](https://github.com/salonijain279/InsightForge/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B?logo=streamlit&logoColor=white)
 
-I built InsightForge as a local analytics workspace for CSV and Excel data. It classifies a user's question, selects an exploratory, predictive, visualization, causal, or general workflow, executes the analysis against the uploaded data, and explains the computed output. I kept deterministic EDA and baseline modelling available without an LLM; custom questions can use OpenAI, Anthropic, or Groq.
+InsightForge is a local analytics workspace for CSV and Excel data. It classifies a user's question, selects an exploratory, predictive, visualization, causal, or general workflow, executes the analysis against the uploaded data, and explains the computed output. Deterministic EDA and baseline modelling remain available without an LLM; custom questions can use OpenAI, Anthropic, or Groq.
 
 ## Why this project
 
-I started this project because many analytics assistants can generate plausible text before an analysis has actually run. I designed InsightForge to separate planning from evidence: it executes Python first, records the real tables, metrics, and charts, and only then grounds the explanation in those outputs. For causal questions, I also surface the method, assumptions, and limitations instead of presenting an estimate as fact.
+Many analytics assistants can generate plausible text before an analysis has actually run. InsightForge is designed to separate planning from evidence: it executes Python first, records the real tables, metrics, and charts, and only then grounds the explanation in those outputs. For causal questions, it also surfaces the method, assumptions, and limitations instead of presenting an estimate as fact.
 
-## What I built
+## What it does
 
 - Upload a CSV or Excel file, or start with a bundled sample dataset.
 - Generate a full EDA profile and data-quality summary without an API call.
